@@ -1,8 +1,12 @@
 const express = require('express')
+const cors = require('cors')
+
+// config
 const app = express()
 
 // middleware
 app.use(express.json())
+app.use(cors())
 
 // controllers
 const transactionsController = require('./controllers/transactions.controller')
