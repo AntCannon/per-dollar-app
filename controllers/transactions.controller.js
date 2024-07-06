@@ -37,7 +37,20 @@ transactionsController.post('/', (req, res) => {
     id: transactionModel.length+1,
     ...createdTransaction
   })
-  res.status(201).send(transactionModel[transactionModel.length-1])
+  res.status(201).json(transactionModel[transactionModel.length-1])
+})
+
+// update
+transactionsController.put('/:id', (req, res) => {
+  const id = +req.params.id
+  const transactionToUpdateIndex = transactionModel.findIndex(transaction => transaction.id === id)
+
+  if (transactionToUpdateIndex !== -1) {
+    transactionModel[transactionToUpdateIndex] = req.body
+    res.status(200).json(transactionModel[transactionToUpdateIndex])
+  } else {
+      res.status(404).json({"error": `No transaction with id: ${id}`})
+  }
 })
 
 module.exports = transactionsController
