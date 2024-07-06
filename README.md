@@ -1,6 +1,7 @@
 ## technologies
 - express
 - nodemon
+- nanoid
 
 ## Set up
 - Clone repo
