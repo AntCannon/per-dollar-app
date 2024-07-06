@@ -30,4 +30,14 @@ transactionsController.delete('/:id', (req, res) => {
   }
 })
 
+// create
+transactionsController.post('/', (req, res) => {
+  const createdTransaction = req.body
+  transactionModel.push({
+    id: transactionModel.length+1,
+    ...createdTransaction
+  })
+  res.status(201).send(transactionModel[transactionModel.length-1])
+})
+
 module.exports = transactionsController
